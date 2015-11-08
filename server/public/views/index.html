@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prime Academy Message Board</title>
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/style.css">
+    <script type="text/javascript" src="/vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/scripts/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="formDiv well">
+        <form id="addMessage">
+            <label name="getName">Your Name: </label><br>
+            <input type="text" id="getName" name="getName" size="47"><hr>
+            <label name="getMsg">Your Message: </label><br>
+            <textarea id="getMsg" cols="45" rows="5" name="getMsg"></textarea><br><br>
+            <!--<input type="text" id="getMsg" name="getMsg" size = "135" placeholder="Enter Location"><br><br>-->
+            <button id="submitAdd" class="btn btn-default btn-md">Submit Your Message</button>
+        </form>
+        </div>
+        <div id="postAllMsgDiv">
+
+        </div>
+    </div>
+</body>
+
+</html>
