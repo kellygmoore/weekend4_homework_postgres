@@ -1,27 +1,33 @@
 <!DOCTYPE>
-<html>
+<html ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title>Prime Academy Message Board</title>
     <link rel="stylesheet" href="/vendors/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/style.css">
-    <script type="text/javascript" src="/vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendors/angular.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.js"></script>
 </head>
 <body>
-    <div class="container">
+    <header class="well"><h2>Prime Academy Messageboard</h2></header>
+    <div class="container" ng-controller="WelcomeController">
         <div class="formDiv well">
         <form id="addMessage">
-            <label name="getName">Your Name: </label><br>
-            <input type="text" id="getName" name="getName" size="47"><hr>
-            <label name="getMsg">Your Message: </label><br>
-            <textarea id="getMsg" cols="45" rows="5" name="getMsg"></textarea><br><br>
+            <label for="getName">Your Name: </label><br>
+            <input ng-model="note.name" type="text" id="getName" name="getName" size="47"><hr>
+            <label for="getMsg">Your Message: </label><br>
+            <textarea ng-model="note.message" id="getMsg" cols="45" rows="5" name="getMsg"></textarea><br><br>
             <!--<input type="text" id="getMsg" name="getMsg" size = "135" placeholder="Enter Location"><br><br>-->
-            <button id="submitAdd" class="btn btn-default btn-md">Submit Your Message</button>
         </form>
+            <button ng-click="clickButton(note)" id="submitAdd" class="btn btn-default btn-md">Submit Your Message</button>
         </div>
         <div id="postAllMsgDiv">
-
+            <div ng-repeat="message in messageArray">
+                <div class="col-md-2 well">
+                    <p class="lead">{{message.name}}</p>
+                    <p class="lead">{{message.message}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

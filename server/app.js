@@ -15,12 +15,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({expanded: true}));
 
 // Add a new person
-app.post('/data', function(req,res){
+app.post('/people', function(req, res){
     // pull the data off of the request
+    console.log(req.body);
     var addedMessage = {
-        "name" : req.body.getName,
-        "message" : req.body.getMsg
+        "name" : req.body.name,
+        "message" : req.body.message
     };
+    console.log("Posting: ", addedMessage);
 
     pg.connect(connectionString, function (err, client) {
         //SQL Query > Insert Data
@@ -32,21 +34,18 @@ app.post('/data', function(req,res){
                     console.log("Error inserting data: ", err);
                     res.send(false);
                 }
-
                 res.send(true);
             });
-
     });
-
 });
 
 // Get all the people information
-app.get('/data', function(req,res){
+app.get('/people', function(req,res){
     var theseMsgs = [];
 
     //SQL Query > SELECT data from table
     pg.connect(connectionString, function (err, client, done) {
-        var query = client.query("SELECT id, name, message FROM messageboard ORDER BY name ASC");
+        var query = client.query("SELECT id, name, message FROM messageboard ORDER BY id ASC");
 
         // Stream results back one row at a time, push into theseMsgs array
         query.on('row', function (row) {
@@ -65,7 +64,6 @@ app.get('/data', function(req,res){
         }
     });
 });
-
 
 
 app.get("/*", function(req, res){
